@@ -1,3 +1,13 @@
+##########################################
+## Python module to read a Wii nunchuck ##
+##                                      ##
+## Written by Jason - @Boeeerb          ##
+## v0.1 03/05/14 - jase@boeeerb.co.uk   ##
+##########################################
+##
+## v0.1 03/05/14 - Initital release
+##
+
 from smbus import SMBus
 import RPi.GPIO as rpi
 
