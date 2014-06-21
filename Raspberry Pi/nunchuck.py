@@ -32,14 +32,8 @@ class nunchuck:
   def read(self):
     self.bus.write_byte(0x52,0x00)
     time.sleep(0.2)
-    data0 = self.bus.read_byte(0x52)
-    data1 = self.bus.read_byte(0x52)
-    data2 = self.bus.read_byte(0x52)
-    data3 = self.bus.read_byte(0x52)
-    data4 = self.bus.read_byte(0x52)
-    data5 = self.bus.read_byte(0x52)
 
-    return [data0,data1,data2,data3,data4,data5]
+    return [self.bus.read_byte(0x52) for i in range(6)]
 
   def raw(self):
     data = self.read()
