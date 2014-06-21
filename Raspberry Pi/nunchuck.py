@@ -50,19 +50,14 @@ class nunchuck:
   def button_c(self):
     data = self.read()
     butc = (data[5] & 0x02)
-    if butc == 0:
-      return True
-    else:
-      return False
+
+    return butc == 0
 
   def button_z(self):
     data = self.read()
     butc = (data[5] & 0x01)
-    if butc == 0:
-      return True
-    else:
-      return False    
 
+    return butc == 0
 
   def joystick_x(self):
     data = self.read()
