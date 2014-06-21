@@ -7,9 +7,11 @@
 ##
 ## v0.1 03/05/14 - Initital release
 ##
+#modiefied 21Jun14 by Simon Walters - reteive one byte at a time
 
 from smbus import SMBus
 import RPi.GPIO as rpi
+import time as time
 
 bus = 0
 
@@ -24,15 +26,20 @@ class nunchuck:
       print "Unable to determine Raspberry Pi revision."
       exit
     self.bus = SMBus(i2c_bus)
-    self.bus.write_byte_data(0x52, 0xF0, 0x55)
+    self.bus.write_byte_data(0x52,0x40,0x00)
+    time.sleep(0.1)
     
   def read(self):
-    buf = self.bus.read_i2c_block_data(0x52, 0x00, 6)
-    data = [0x00]*6
+    self.bus.write_byte(0x52,0x00)
+    time.sleep(0.2)
+    data0 = self.bus.read_byte(0x52)
+    data1 = self.bus.read_byte(0x52)
+    data2 = self.bus.read_byte(0x52)
+    data3 = self.bus.read_byte(0x52)
+    data4 = self.bus.read_byte(0x52)
+    data5 = self.bus.read_byte(0x52)
 
-    for i in range(len(buf)):
-      data[i] = buf[i]
-    return data
+    return [data0,data1,data2,data3,data4,data5]
 
   def raw(self):
     data = self.read()
