@@ -2,12 +2,12 @@
 ## Python module to read a Wii nunchuck ##
 ##                                      ##
 ## Written by Jason - @Boeeerb          ##
-## v0.1 03/05/14 - jase@boeeerb.co.uk   ##
+##  jase@boeeerb.co.uk                  ##
 ##########################################
 ##
 ## v0.1 03/05/14 - Initital release
-##
-#modiefied 21Jun14 by Simon Walters - reteive one byte at a time
+## v0.2 21/06/14 - Retrieve one byte at a time [Simon Walters - @cymplecy]
+## v0.3 22/06/14 - Minor Refactoring [Jack Wearden - @JackWeirdy]
 
 from smbus import SMBus
 import RPi.GPIO as rpi
