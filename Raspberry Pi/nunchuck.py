@@ -16,7 +16,7 @@ import time as time
 bus = 0
 
 class nunchuck:
-  
+
   def __init__(self):
     if rpi.RPI_REVISION == 1:
       i2c_bus = 0
@@ -28,18 +28,12 @@ class nunchuck:
     self.bus = SMBus(i2c_bus)
     self.bus.write_byte_data(0x52,0x40,0x00)
     time.sleep(0.1)
-    
+
   def read(self):
     self.bus.write_byte(0x52,0x00)
     time.sleep(0.2)
-    data0 = self.bus.read_byte(0x52)
-    data1 = self.bus.read_byte(0x52)
-    data2 = self.bus.read_byte(0x52)
-    data3 = self.bus.read_byte(0x52)
-    data4 = self.bus.read_byte(0x52)
-    data5 = self.bus.read_byte(0x52)
 
-    return [data0,data1,data2,data3,data4,data5]
+    return [self.bus.read_byte(0x52) for i in range(6)]
 
   def raw(self):
     data = self.read()
@@ -56,19 +50,14 @@ class nunchuck:
   def button_c(self):
     data = self.read()
     butc = (data[5] & 0x02)
-    if butc == 0:
-      return True
-    else:
-      return False
+
+    return butc == 0
 
   def button_z(self):
     data = self.read()
     butc = (data[5] & 0x01)
-    if butc == 0:
-      return True
-    else:
-      return False    
 
+    return butc == 0
 
   def joystick_x(self):
     data = self.read()
@@ -85,11 +74,11 @@ class nunchuck:
   def accelerometer_y(self):
     data = self.read()
     return data[3]
-  
+
   def accelerometer_z(self):
     data = self.read()
     return data[4]
 
-  
+
   def scale(self,value,_min,_max,_omin,_omax):
     return (value - _min) * (_omax - _omin) // (_max - _min) + _omin
