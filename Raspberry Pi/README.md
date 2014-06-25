@@ -7,7 +7,7 @@
 
 ### Functions
 
-The functions of piglow are:
+The functions of nunchuk are:
 
 ```python
 from nunchuck import nunchuck
