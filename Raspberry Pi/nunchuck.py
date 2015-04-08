@@ -10,6 +10,7 @@
 ## v0.3 22/06/14 - Minor Refactoring [Jack Wearden - @JackWeirdy]
 ## v0.32 25/6/14 - XOR each data byte with 0x17 and then add 0x17 to produce corrent values - Simon Walters @cymplecy
 ## v0.4 26/6/14 - Change method of XOR and add delay parameter - Simon Walters @cymplecy
+## v0.41 30/3/15 - Adding support for RPI_REVISION 3 - John Lumley @Jelby-John
 
 from smbus import SMBus
 import RPi.GPIO as rpi
@@ -24,6 +25,8 @@ class nunchuck:
     if rpi.RPI_REVISION == 1:
       i2c_bus = 0
     elif rpi.RPI_REVISION == 2:
+      i2c_bus = 1
+    elif rpi.RPI_REVISION == 3:
       i2c_bus = 1
     else:
       print "Unable to determine Raspberry Pi revision."
